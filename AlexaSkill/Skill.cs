@@ -82,7 +82,7 @@ namespace AlexaSkill
                 response = ResponseBuilder.Tell("Help...");
                 response.Response.ShouldEndSession = false;
             }
-            else if (request.Intent.Name == "AMAZON.StopIntent.")
+            else if (request.Intent.Name == "AMAZON.StopIntent")
             {
                 response = ResponseBuilder.Tell("Stopping...");
             }

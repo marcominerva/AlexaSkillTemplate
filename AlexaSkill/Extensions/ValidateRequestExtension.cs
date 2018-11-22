@@ -51,12 +51,13 @@ namespace AlexaSkill.Extensions
             var isTimestampValid = RequestVerification.RequestTimestampWithinTolerance(skillRequest);
             var isValid = await RequestVerification.Verify(signature, certUrl, body);
 
-            if (!isValid && !isTimestampValid)
+            if (!isValid || !isTimestampValid)
             {
                 log.LogError("Validation failed - RequestVerification failed");
+                return false;
             }
 
-            return isValid;
+            return true;
         }
     }
 }
