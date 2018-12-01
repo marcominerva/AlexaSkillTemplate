@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlexaSkill.Extensions
 {
-    internal static class ValidateRequestExtension
+    internal static class RequestExtension
     {
         private const int AllowedTimestampToleranceInSeconds = 150;
 
