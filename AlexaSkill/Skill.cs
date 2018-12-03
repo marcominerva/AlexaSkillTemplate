@@ -25,7 +25,7 @@ namespace AlexaSkill
             var skillRequest = JsonConvert.DeserializeObject<SkillRequest>(json);
 
             // Verifies that the request is indeed coming from Alexa.
-            var isValid = await skillRequest.ValidateRequest(req, log);
+            var isValid = await skillRequest.ValidateRequestAsync(req, log);
             if (!isValid)
             {
                 return new BadRequestResult();

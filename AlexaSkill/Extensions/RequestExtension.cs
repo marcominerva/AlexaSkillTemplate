@@ -11,7 +11,7 @@ namespace AlexaSkill.Extensions
     {
         private const int AllowedTimestampToleranceInSeconds = 150;
 
-        public static async Task<bool> ValidateRequest(this SkillRequest skillRequest, HttpRequest request, ILogger log)
+        public static async Task<bool> ValidateRequestAsync(this SkillRequest skillRequest, HttpRequest request, ILogger log)
         {
             // Verifies that the request is indeed coming from Alexa.
 
@@ -50,7 +50,7 @@ namespace AlexaSkill.Extensions
                 return false;
             }
 
-            var isTimestampValid = RequestTimestampWithinTolerance(skillRequest.Request.Timestamp);
+            var isTimestampValid = RequestVerification.RequestTimestampWithinTolerance(skillRequest);
             var isValid = await RequestVerification.Verify(signature, certUrl, body);
 
             if (!isValid || !isTimestampValid)
@@ -61,8 +61,5 @@ namespace AlexaSkill.Extensions
 
             return true;
         }
-
-        private static bool RequestTimestampWithinTolerance(DateTime timestamp)
-            => Math.Abs(DateTimeOffset.Now.Subtract(timestamp).TotalSeconds) <= AllowedTimestampToleranceInSeconds;
     }
 }
