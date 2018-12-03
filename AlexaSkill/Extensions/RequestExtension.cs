@@ -7,10 +7,8 @@ using System.Threading.Tasks;
 
 namespace AlexaSkill.Extensions
 {
-    internal static class RequestExtension
+    public static class RequestExtension
     {
-        private const int AllowedTimestampToleranceInSeconds = 150;
-
         public static async Task<bool> ValidateRequestAsync(this SkillRequest skillRequest, HttpRequest request, ILogger log)
         {
             // Verifies that the request is indeed coming from Alexa.
