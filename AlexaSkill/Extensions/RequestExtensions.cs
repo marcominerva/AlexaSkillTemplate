@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AlexaSkill.Extensions
 {
-    public static class RequestExtension
+    public static class RequestExtensions
     {
         public static async Task<bool> ValidateRequestAsync(this SkillRequest skillRequest, HttpRequest request, ILogger log)
         {

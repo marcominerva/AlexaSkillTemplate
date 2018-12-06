@@ -12,6 +12,7 @@ namespace AlexaSkill
         public const string Cancel = "AMAZON.CancelIntent";
         public const string Help = "AMAZON.HelpIntent";
         public const string Stop = "AMAZON.StopIntent";
+        public const string NavigateHomeIntent = "AMAZON.NavigateHomeIntent";
         public const string Fallback = "AMAZON.FallbackIntent";
     }
 }

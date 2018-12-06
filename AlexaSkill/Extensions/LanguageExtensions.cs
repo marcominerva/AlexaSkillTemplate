@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace AlexaSkill.Extensions
 {
-    public static class LanguageExtension
+    public static class LanguageExtensions
     {
         public static ILocaleSpeech CreateLocale(this SkillRequest skillRequest, DictionaryLocaleSpeechStore store)
         {

@@ -44,11 +44,9 @@ namespace AlexaSkill
                 {
                     log.LogInformation("Session started");
 
-                    var message = await locale.Get(LanguageKeys.Welcome, null);
-                    response = ResponseBuilder.Tell(message);
-
-                    // This flag keeps the session open (the default is true, so the session is automatically closed after the response).
-                    response.Response.ShouldEndSession = false;
+                    var welcomeMessage = await locale.Get(LanguageKeys.Welcome, null);
+                    var welcomeRepromptMessage = await locale.Get(LanguageKeys.WelcomeReprompt, null);
+                    response = ResponseBuilder.Ask(welcomeMessage, RepromptBuilder.Create(welcomeRepromptMessage));
                 }
                 else if (request is IntentRequest intentRequest)
                 {
@@ -63,6 +61,10 @@ namespace AlexaSkill
                         // Processes request according to intentRequest.Intent.Name...
                         var message = await locale.Get(LanguageKeys.Response, null);
                         response = ResponseBuilder.Tell(message);
+
+                        // Note: The ResponseBuilder.Tell method automatically sets the
+                        // Response.ShouldEndSession property to true, so the session will be
+                        // automatically closed at the end of the response.
                     }
                 }
                 else if (request is SessionEndedRequest sessionEndedRequest)
@@ -73,7 +75,7 @@ namespace AlexaSkill
             }
             catch
             {
-                var message = await locale.Get("Error", null);
+                var message = await locale.Get(LanguageKeys.Error, null);
                 response = ResponseBuilder.Tell(message);
                 response.Response.ShouldEndSession = false;
             }
@@ -93,8 +95,7 @@ namespace AlexaSkill
             else if (request.Intent.Name == IntentNames.Help)
             {
                 var message = await locale.Get(LanguageKeys.Help, null);
-                response = ResponseBuilder.Tell(message);
-                response.Response.ShouldEndSession = false;
+                response = ResponseBuilder.Ask(message, RepromptBuilder.Create(message));
             }
             else if (request.Intent.Name == IntentNames.Stop)
             {
@@ -112,21 +113,23 @@ namespace AlexaSkill
 
             store.AddLanguage("en", new Dictionary<string, object>
             {
-                [LanguageKeys.Welcome] = "Your welcome message",
-                [LanguageKeys.Response] = "Your custom response",
+                [LanguageKeys.Welcome] = "Welcome to the skill!",
+                [LanguageKeys.WelcomeReprompt] = "You can ask help if you need instructions on how to interact with the skill",
+                [LanguageKeys.Response] = "This is just a sample answer",
                 [LanguageKeys.Cancel] = "Canceling...",
                 [LanguageKeys.Help] = "Help...",
-                [LanguageKeys.Stop] = "Bye bye...",
+                [LanguageKeys.Stop] = "Bye bye!",
                 [LanguageKeys.Error] = "I'm sorry, there was an unexpected error. Please, try again later."
             });
 
             store.AddLanguage("it", new Dictionary<string, object>
             {
-                [LanguageKeys.Welcome] = "Il tuo messaggio di benvenuto",
-                [LanguageKeys.Response] = "La tua risposta",
+                [LanguageKeys.Welcome] = "Benvenuto nella skill!",
+                [LanguageKeys.WelcomeReprompt] = "Se vuoi informazioni sulle mie funzionalità, prova a chiedermi aiuto",
+                [LanguageKeys.Response] = "Questa è solo una risposta di prova",
                 [LanguageKeys.Cancel] = "Sto annullando...",
                 [LanguageKeys.Help] = "Aiuto...",
-                [LanguageKeys.Stop] = "A presto...",
+                [LanguageKeys.Stop] = "A presto!",
                 [LanguageKeys.Error] = "Mi dispiace, si è verificato un errore imprevisto. Per favore, riprova di nuovo in seguito."
             });
 

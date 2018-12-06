@@ -9,6 +9,7 @@ namespace AlexaSkill
     public static class LanguageKeys
     {
         public const string Welcome = nameof(Welcome);
+        public const string WelcomeReprompt = nameof(WelcomeReprompt);
         public const string Response = nameof(Response);
 
         public const string Cancel = nameof(Cancel);
