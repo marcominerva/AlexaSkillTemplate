@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+    <Metadata>
+        <Identity Id="AlexaSkillTemplate.278b274c-bb55-4008-bde7-5b51b076a39e" Version="1.0" Language="en-US" Publisher="Marco Minerva" />
+        <DisplayName>Alexa Skill Project Template</DisplayName>
+        <Description xml:space="preserve">A Visual Studio project template that allows to create Alexa Skills using an Azure Function as backend.</Description>
+        <MoreInfo>https://github.com/marcominerva/AlexaSkillTemplate</MoreInfo>
+        <License>License.txt</License>
+        <Icon>Icon.png</Icon>
+        <Tags >alexa azure functions</Tags>
+    </Metadata>
+    <Installation>
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0, 17.0)" />
+    </Installation>
+    <Dependencies>
+    </Dependencies>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="File" Path="ProjectTemplates" d:TargetPath="ProjectTemplates\AlexaSkill.zip" />
+    </Assets>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.8.27729.1,17.0)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
+</PackageManifest>
