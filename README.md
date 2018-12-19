@@ -8,7 +8,7 @@ You can install the template from the [Visual Studio Market Place](https://marke
 
 **The project structure**
 
- ![NewAlexaProject.png](https://github.com/marcominerva/AlexaSkillTemplate/raw/master/Screenshots/NewAlexaProject.png)
+ ![NewAlexaProject.png](https://github.com/marcominerva/AlexaSkillTemplate/raw/master/Screenshots/AlexaProjectStructure.png)
 
 The actual skill implementation is contained in the **Skill.cs** file. The project includes support to:
 
