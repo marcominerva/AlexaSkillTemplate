@@ -4,7 +4,7 @@
     <AzureFunctionsVersion>v2</AzureFunctionsVersion>
   </PropertyGroup>
   <ItemGroup>
-    <PackageReference Include="Alexa.NET" Version="1.5.6" />
+    <PackageReference Include="Alexa.NET" Version="1.5.7" />
     <PackageReference Include="Alexa.NET.LocaleSpeech" Version="1.0.0" />
     <PackageReference Include="Microsoft.NET.Sdk.Functions" Version="1.0.24" />
   </ItemGroup>
