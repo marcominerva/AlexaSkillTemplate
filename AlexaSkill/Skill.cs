@@ -10,7 +10,6 @@ using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
 using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -87,17 +86,17 @@ namespace AlexaSkill
         {
             SkillResponse response = null;
 
-            if (request.Intent.Name == IntentNames.Cancel)
+            if (request.Intent.Name == BuiltInIntent.Cancel)
             {
                 var message = await locale.Get(LanguageKeys.Cancel, null);
                 response = ResponseBuilder.Tell(message);
             }
-            else if (request.Intent.Name == IntentNames.Help)
+            else if (request.Intent.Name == BuiltInIntent.Help)
             {
                 var message = await locale.Get(LanguageKeys.Help, null);
                 response = ResponseBuilder.Ask(message, RepromptBuilder.Create(message));
             }
-            else if (request.Intent.Name == IntentNames.Stop)
+            else if (request.Intent.Name == BuiltInIntent.Stop)
             {
                 var message = await locale.Get(LanguageKeys.Stop, null);
                 response = ResponseBuilder.Tell(message);
