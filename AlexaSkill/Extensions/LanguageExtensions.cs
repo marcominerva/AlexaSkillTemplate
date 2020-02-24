@@ -1,9 +1,6 @@
 ﻿using Alexa.NET.LocaleSpeech;
 using Alexa.NET.Request;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+using Alexa.NET.Response;
 using System.Threading.Tasks;
 
 namespace AlexaSkill.Extensions
@@ -17,5 +14,7 @@ namespace AlexaSkill.Extensions
 
             return locale;
         }
+
+        public static Task<IOutputSpeech> Get(this ILocaleSpeech locale, string key) => locale.Get(key, null);
     }
 }

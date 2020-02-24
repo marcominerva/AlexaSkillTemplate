@@ -43,9 +43,14 @@ namespace AlexaSkill
                 {
                     log.LogInformation("Session started");
 
-                    var welcomeMessage = await locale.Get(LanguageKeys.Welcome, null);
-                    var welcomeRepromptMessage = await locale.Get(LanguageKeys.WelcomeReprompt, null);
+                    var welcomeMessage = await locale.Get(LanguageKeys.Welcome);
+                    var welcomeRepromptMessage = await locale.Get(LanguageKeys.WelcomeReprompt);
                     response = ResponseBuilder.Ask(welcomeMessage, RepromptBuilder.Create(welcomeRepromptMessage));
+                }
+                else if (request is SessionEndedRequest sessionEndedRequest)
+                {
+                    log.LogInformation("Session ended");
+                    response = ResponseBuilder.Empty();
                 }
                 else if (request is IntentRequest intentRequest)
                 {
@@ -58,7 +63,7 @@ namespace AlexaSkill
                     else
                     {
                         // Processes request according to intentRequest.Intent.Name...
-                        var message = await locale.Get(LanguageKeys.Response, null);
+                        var message = await locale.Get(LanguageKeys.Response);
                         response = ResponseBuilder.Tell(message);
 
                         // Note: The ResponseBuilder.Tell method automatically sets the
@@ -66,15 +71,10 @@ namespace AlexaSkill
                         // automatically closed at the end of the response.
                     }
                 }
-                else if (request is SessionEndedRequest sessionEndedRequest)
-                {
-                    log.LogInformation("Session ended");
-                    response = ResponseBuilder.Empty();
-                }
             }
             catch
             {
-                var message = await locale.Get(LanguageKeys.Error, null);
+                var message = await locale.Get(LanguageKeys.Error);
                 response = ResponseBuilder.Tell(message);
                 response.Response.ShouldEndSession = false;
             }
@@ -88,17 +88,17 @@ namespace AlexaSkill
 
             if (request.Intent.Name == BuiltInIntent.Cancel)
             {
-                var message = await locale.Get(LanguageKeys.Cancel, null);
+                var message = await locale.Get(LanguageKeys.Cancel);
                 response = ResponseBuilder.Tell(message);
             }
             else if (request.Intent.Name == BuiltInIntent.Help)
             {
-                var message = await locale.Get(LanguageKeys.Help, null);
+                var message = await locale.Get(LanguageKeys.Help);
                 response = ResponseBuilder.Ask(message, RepromptBuilder.Create(message));
             }
             else if (request.Intent.Name == BuiltInIntent.Stop)
             {
-                var message = await locale.Get(LanguageKeys.Stop, null);
+                var message = await locale.Get(LanguageKeys.Stop);
                 response = ResponseBuilder.Tell(message);
             }
 
